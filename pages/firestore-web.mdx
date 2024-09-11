@@ -14,7 +14,10 @@
 </a>
 
 ```js copy
-import { collection, doc, setDoc } from "firebase/firestore";
+import { app } from "path to firebase config";
+import { getFirestore, collection, doc, setDoc } from "firebase/firestore";
+
+const db = getFirestore(app);
 
 const ref = collection(db, "users");
 
@@ -34,7 +37,10 @@ await setDoc(doc(ref, "MichaelScott"), {
 </a>
 
 ```js copy
-import { collection, addDoc } from "firebase/firestore";
+import { app } from "path to firebase config";
+import { getFirestore, collection, addDoc } from "firebase/firestore";
+
+const db = getFirestore(app);
 
 const ref = collection(db, "users");
 
@@ -47,7 +53,10 @@ await addDoc(ref, {
 ### Add Subcollection
 
 ```js copy
+import { app } from "path to firebase config";
 import { collection, addDoc } from "firebase/firestore";
+
+const db = getFirestore(app);
 
 const ref = collection(db, "users", "MichaelScott", "problems");
 
@@ -70,7 +79,10 @@ await addDoc(ref, {
 </a>
 
 ```js copy
+import { app } from "path to firebase config";
 import { doc, getDoc } from "firebase/firestore";
+
+const db = getFirestore(app);
 
 const docSnap = await getDoc(doc(db, "users", "MichaelScott"));
 
@@ -88,6 +100,8 @@ console.log({ ...docSnap.data(), id: docSnap.id });
 
 ```js copy
 import { doc, onSnapshot } from "firebase/firestore";
+
+const db = getFirestore(app);
 
 const unsub = onSnapshot(doc(db, "users", "MichaelScott"), (docSnap) => {
   console.log(docSnap.data());
@@ -109,7 +123,10 @@ unsub();
 </a>
 
 ```js copy
-import { collection, getDocs } from "firebase/firestore";
+import { app } from "path to firebase config";
+import { getFirestore, collection, getDocs } from "firebase/firestore";
+
+const db = getFirestore(app);
 
 const ref = collection(db, "users");
 const querySnap = await getDocs(ref);
@@ -131,7 +148,10 @@ querySnap.forEach((docSnap) => {
 </a>
 
 ```js copy
+import { app } from "path to firebase config";
 const { collection, getDocs } = require("firebase/firestore");
+
+const db = getFirestore(app);
 
 const ref = collection(db, "users", "MichaelScott", "problems");
 const querySnap = await getDocs(ref);
@@ -153,7 +173,10 @@ querySnap.forEach((docSnap) => {
 </a>
 
 ```js copy
+import { app } from "path to firebase config";
 import { collectionGroup, getDocs } from "firebase/firestore";  
+
+const db = getFirestore(app);
 
 const ref = collectionGroup(db, 'problems');
 const querySnap = await getDocs(ref);
@@ -173,7 +196,10 @@ querySnap.forEach((docSnap) => {
 </a>
 
 ```js copy
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { app } from "path to firebase config";
+import { getFirestore, collection, query, where, getDocs } from "firebase/firestore";
+
+const db = getFirestore(app);
 
 const ref = collection(db, "users");
 const q = query(
@@ -233,7 +259,10 @@ not-in
 </a>
 
 ```js copy
+import { app } from "path to firebase config";
 import { doc, updateDoc } from "firebase/firestore";
+
+const db = getFirestore(app);
 
 await updateDoc(doc(db, "users", "MichaelScott"), {
   atOffice: false,
@@ -252,7 +281,10 @@ await updateDoc(doc(db, "users", "MichaelScott"), {
 </a>
 
 ```js copy
+import { app } from "path to firebase config";
 import { doc, setDoc, updateDoc } from "firebase/firestore";
+
+const db = getFirestore(app);
 
 await updateDoc(doc(db, "users", "MichaelScott"), {
   "favorites.song": "Just Dance",
@@ -271,7 +303,10 @@ await updateDoc(doc(db, "users", "MichaelScott"), {
 </a>
 
 ```js copy
+import { app } from "path to firebase config";
 import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
+
+const db = getFirestore(app);
 
 await updateDoc(doc(db, "users", "MichaelScott"), {
   enemies: arrayUnion("Toby"),
@@ -284,7 +319,10 @@ await updateDoc(doc(db, "users", "MichaelScott"), {
 ### Delete document field
 
 ```js copy
+import { app } from "path to firebase config";
 import { doc, updateDoc, deleteField } from "firebase/firestore";
+
+const db = getFirestore(app);
 
 await updateDoc(doc(db, "users", "MichaelScott"), {
   enemies: deleteField(),
@@ -301,7 +339,10 @@ await updateDoc(doc(db, "users", "MichaelScott"), {
 </a>
 
 ```js copy
+import { app } from "path to firebase config";
 import { doc, deleteDoc } from "firebase/firestore";
+
+const db = getFirestore(app);
 
 await deleteDoc(doc(db, "users", "MichaelScott"));
 
